@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -rs $(find . -name '*.gif' -printf '%f\n')

@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -rus | find . -name "*.gif" -printf '%f\n'
+ls -Rrus | find . -name "*.gif" -printf '%f\n'

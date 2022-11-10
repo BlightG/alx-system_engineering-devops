@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# this is a scrpit that prints the string "Best School" a total of 8 times and
+# prints "bad luck" on the 4th iteration and prints "good lluck" on the 8th iteration
+i=1
+while [ "$i" -le 20 ];
+do
+	echo "$i"
+        if [ "$i" -eq 4 ]
+        then
+                echo "bad luck from China"
+	elif [ "$i" -eq 8 ]
+	then
+		echo "bad luck from Japan"
+	elif [ "$i" -eq 17 ]
+	then
+		echo "bad luck from Italy"
+        fi
+	(( i++ ))
+done

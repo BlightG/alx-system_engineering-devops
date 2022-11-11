@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# infitly prints
+i=0
+while [ $i -lt 2 ]
+do 
+	echo "To infinity and beyond"
+done

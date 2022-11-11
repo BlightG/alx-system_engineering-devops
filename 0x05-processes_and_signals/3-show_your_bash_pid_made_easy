@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # grep the user
-pgrep -a bash
+pgrep bash -l

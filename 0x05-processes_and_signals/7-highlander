@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # infitly prints
 i=0
-trap 'echo I am invincible!!!' SIGTERM SIGKILL 
+trap 'echo I am invincible!!!' SIGTERM 
 while [ $i -lt 2 ]
 do 
 	echo "To infinity and beyond"

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # user script prints only bash PID
 # shellcheck disable=SC2009
-pgrep -f bash | ps -s 
+ps -aux | grep bash 

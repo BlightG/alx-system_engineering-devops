@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# infitly prints
+i=0
+trap 'echo I am invincible!!!' SIGTERM SIGKILL 
+while [ $i -lt 2 ]
+do 
+	echo "To infinity and beyond"
+	sleep 2s
+done

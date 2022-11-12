@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 # kills infinity
-pkill -f "bash ./4-to_infinity_and_beyond"
+pgrep=$( pgrep -f "bash ./4-to_infinity_and_beyond" )
+for i in $pgrep
+do
+	kill "$i"
+done

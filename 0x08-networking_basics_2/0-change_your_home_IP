@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This Script changes the etc/hosts file to wht is needed
+echo "facebook	8.8.8.8"

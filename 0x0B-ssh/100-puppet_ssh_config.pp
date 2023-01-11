@@ -1,7 +1,7 @@
 # this is a comment
-ssh_authorized_key{ 'ubuntu@54.144.137.83':
+ssh_authorized_key{ 'root@magpie.example.com':
   ensure => present,
+  user   => 'root',
   target => '~/.ssh/school',
   type   => 'ssh-rsa',
-  key    => $public_key,
 }

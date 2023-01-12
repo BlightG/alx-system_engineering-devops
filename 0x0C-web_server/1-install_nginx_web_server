@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# install and configure ngix
+
+sudo apt install nginx -y
+echo "Hello World!" > /var/www/html

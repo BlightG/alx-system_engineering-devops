@@ -2,4 +2,8 @@
 # install and configure ngix
 
 sudo apt install nginx -y
-echo "Hello World!" > /var/www/html
+sudo chmod -R 755 /var/www
+echo "Hello World!" > index.nginx-debian.html
+sudo rm /var/www/html/index.nginx-debian.html
+sudo cp index.nginx-debian.html /var/www/html/index.nginx-debian.html
+

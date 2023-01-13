@@ -5,4 +5,5 @@ sudo apt-get -y update
 sudo apt-get -y install nginx 
 sudo ufw allow "Nignx HTTP"
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+sudo sed -i '|listen 80 default_server|a location /redirect_me { \n rewrite https://www.youtube.com/watch?v=dQw4w9WgXcQ/ permanent; \n}' /etc/nginx/sites-enabled/default
 sudo service nginx restart

@@ -1,13 +1,6 @@
 # this is a comment
-class ssh{
-  file{ '/etc/ssh/sshd_config':
-    ensure => present,
-    owner  => 'root',
-	group  => 'root',
-	mode   => '0644',
-  }
-  service { 'ssh':
-	ensure => 'running',
-	enable => 'true',
-  }
+exec {'echo':
+  path    => ['/usr/bin', 'usr/local/bin', '/bin'],
+  command => 'echo "	IdentityFile ~/.ssh/school\n	PasswordAuthentication no" >> /etc/ssh/ssh_config',
+  returns => [0,1],
 }

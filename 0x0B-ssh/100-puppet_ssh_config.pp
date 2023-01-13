@@ -1,7 +1,13 @@
 # this is a comment
-ssh_authorized_key{ 'root@magpie.example.com':
-  ensure => present,
-  user   => 'root',
-  target => '~/.ssh/school',
-  type   => 'ssh-rsa',
+class ssh{
+  file{ '/etc/ssh/sshd_config':
+    ensure => present,
+    owner  => 'root',
+	group  => 'root',
+	mode   => '0644',
+  }
+  service { 'ssh':
+	ensure => 'running',
+	enable => 'true',
+  }
 }

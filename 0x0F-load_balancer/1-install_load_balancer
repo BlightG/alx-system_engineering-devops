@@ -2,7 +2,7 @@
 # configures a load balancer to to use a roundrobin algorithm
 # to decide between two servers
 
-sudo apt-get -y install --no-install-recommends software-properties-common
+sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.7
 sudo apt-get -y update
 

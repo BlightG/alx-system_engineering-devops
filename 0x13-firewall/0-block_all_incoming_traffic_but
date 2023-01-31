@@ -3,3 +3,5 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow "OpenSSH" 
 sudo ufw allow "Nginx Full" 
+sudo ufw allow 22
+sudo ufw allow 443

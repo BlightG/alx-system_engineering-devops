@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # makes nginx use a new user called nginx and makes it listen on port 8080
 
-sudo useradd -s /usr/sbin/nologin -d /var/www -M nginx
-sudo sed -i 's/user www-data/user nginx/' /etc/nginx/nginx.conf
-sudo sed -i '27i\ \tlisten 8080 default_server;\n\tlisten [::]:8080 default_server;' /etc/nginx/sites-enabled/default
-sudo service nginx restart
+sed -i "s+#user www-data+user nginx+" /etc/nginx/nginx.conf
+sed -i "s+80+8080+g" /etc/nginx/sites-available/default
+chmod 644 /etc/nginx/nginx.conf
+pkill apache2
+sudo -u nginx service nginx start

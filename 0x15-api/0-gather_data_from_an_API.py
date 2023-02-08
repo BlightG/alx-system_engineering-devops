@@ -7,13 +7,6 @@ import json
 import urllib.request
 
 
-def parse_response(response):
-    """converts response from byte to list type""" 
-    str_response = response.decode('utf-8')
-    list_response = json.loads(str_response)
-    return (list_response)
-
-
 if __name__ == "__main__":
     if len(argv) <= 1:
         print("Usage: ./0-gather_data_from_an_API.py <employee_id>")
@@ -25,12 +18,16 @@ if __name__ == "__main__":
 
     with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
                                 f'/users/{argv[1]}') as req:
-        list_response = parse_response(req.read())
+        response = req.read()
+        str_response = response.decode('utf-8')
+        list_response = json.loads(str_response)
         user = list_response.get("name")
 
     with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
                                 f'/todos?userId={argv[1]}') as req:
-        list_response = parse_response(req.read())
+        response = req.read()
+        str_response = response.decode('utf-8')
+        list_response = json.loads(str_response)
         for dct in list_response:
             if dct['completed'] is True:
                 task_completed = task_completed + 1

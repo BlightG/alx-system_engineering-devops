@@ -10,17 +10,19 @@ import json
 import urllib.request
 
 
+def parse_response(response):
+    """converts response from byte to list type""" 
+    str_response = response.decode('utf-8')
+    list_response = json.loads(str_response)
+    return (list_response)
+
+
 if __name__ == "__main__":
 
     if len(argv) <= 1:
         print("Usage: ./1-export_to_csv.py <employee_id>")
         exit()
 
-    def parse_response(response):
-        """converts response from byte to list type""" 
-        str_response = response.decode('utf-8')
-        list_response = json.loads(str_response)
-        return (list_response)
 
     with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
                                 f'/users/{argv[1]}') as req:

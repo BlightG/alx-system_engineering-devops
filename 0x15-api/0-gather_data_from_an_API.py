@@ -15,7 +15,7 @@ if __name__ == '__main__':
     title_list = []
 
     def parse_response(response):
-        """converts response from byte to list type """ 
+    """converts response from byte to list type""" 
         str_response = response.decode('utf-8')
         list_response = json.loads(str_response)
         return (list_response)

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' script that returns employee ID and TO/DO list progress '''
+""" script that returns employee ID and TO/DO list progress """
 from sys import argv
 import json
 import urllib.request
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     title_list = []
 
     def parse_response(response):
-        ''' converts response from byte to list type '''
+        """ converts response from byte to list type """ 
         str_response = response.decode('utf-8')
         list_response = json.loads(str_response)
         return (list_response)

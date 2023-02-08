@@ -32,4 +32,4 @@ if __name__ == '__main__':
         print(f'Employee {user} is done with tasks' +
               f' ({task_completed}/{len(list_response)}):')
         for title in title_list:
-            print(f'\t{title}')
+            print(f'\t {title}')

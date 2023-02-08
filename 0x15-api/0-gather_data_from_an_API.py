@@ -2,13 +2,13 @@
 """script that returns employee ID and TO/DO list progress
 """
 
-from sys import argv
 import json
+import sys
 import urllib.request
 
 
 if __name__ == "__main__":
-    if len(argv) <= 1:
+    if len(sys.argv) <= 1:
         print("Usage: ./0-gather_data_from_an_API.py <employee_id>")
         exit()
 
@@ -17,14 +17,14 @@ if __name__ == "__main__":
 
 
     with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
-                                f'/users/{argv[1]}') as req:
+                                f'/users/{sys.argv[1]}') as req:
         response = req.read()
         str_response = response.decode('utf-8')
         list_response = json.loads(str_response)
         user = list_response.get("name")
 
     with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
-                                f'/todos?userId={argv[1]}') as req:
+                                f'/todos?userId={sys.argv[1]}') as req:
         response = req.read()
         str_response = response.decode('utf-8')
         list_response = json.loads(str_response)

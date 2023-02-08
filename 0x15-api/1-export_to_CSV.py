@@ -18,7 +18,6 @@ def parse_response(response):
 
 
 if __name__ == "__main__":
-
     if len(argv) <= 1:
         print("Usage: ./1-export_to_csv.py <employee_id>")
         exit()

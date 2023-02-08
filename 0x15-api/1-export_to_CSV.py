@@ -10,6 +10,9 @@ if __name__ == '__main__':
         print("Usage: ./1-export_to_csv.py <employee_id>")
         exit()
 
+    csv_headers = ['USER_ID', 'USERNAME',
+                   'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+
     def parse_response(response):
         """converts response from byte to list type """ 
         str_response = response.decode('utf-8')
@@ -17,16 +20,21 @@ if __name__ == '__main__':
         return (list_response)
 
     with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
+                                f'/users/{argv[1]}') as req:
+        list_response = parse_response(req.read())
+        user = list_response.get("name")
+    
+    with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
                                 f'/todos?userId={argv[1]}') as req:
         list_response = parse_response(req.read())
 
-    with open(f'{argv[1]}.csv', 'w', encoding='UTF8', newline='') as f:
+    with open(f'{argv[1]}.csv', 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f,quoting=csv.QUOTE_ALL)
 
-        writer = csv.writer(f)
         for dct in list_response:
             response_value = []
-            for key, values in dct.items():
-                if key != 'id':
-                    response_value.append(values)
-            # print(response_value)
+            response_value.append(dct.get('userId'))
+            response_value.append(user)
+            response_value.append(dct.get('completed'))
+            response_value.append(dct.get('title'))
             writer.writerow(response_value)

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""script that returns employee ID and TO/DO list progress """
+"""
+script that returns employee ID and TO/DO list progress
+"""
 
 from sys import argv
 import json

@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-"""script that write to a csv file employee ID and TO/DO list progress"""
+"""
+script that write to a csv file
+employee ID and TO/DO list progress
+"""
 
 import csv
 from sys import argv
 import json
 import urllib.request
+
 
 if __name__ == "__main__":
 

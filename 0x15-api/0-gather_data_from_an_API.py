@@ -8,6 +8,7 @@ import urllib.request
 
 
 if __name__ == "__main__":
+    """main module"""
     if len(sys.argv) <= 1:
         print("Usage: ./0-gather_data_from_an_API.py <employee_id>")
         exit()

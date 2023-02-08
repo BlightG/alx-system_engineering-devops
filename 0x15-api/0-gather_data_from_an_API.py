@@ -1,39 +1,28 @@
 #!/usr/bin/python3
-"""script that returns employee ID and TO/DO list progress
-"""
-
-import json
+"""Returns to-do list information for a given employee ID."""
+import requests
 import sys
-import urllib.request
-
 
 if __name__ == "__main__":
-    """main module"""
-    if len(sys.argv) <= 1:
+    if len(sys.argv) > 1:
+        url = "https://jsonplaceholder.typicode.com"
+        employee_id = int(sys.argv[1])
+        user = requests.get(
+            "{}/users/{}".format(url, employee_id)).json()
+        todos = requests.get(
+            "{}/users/{}/todos/".format(url, employee_id)).json()
+
+        done_tasks = 0
+        done_tasks_str = ""
+        for todo in todos:
+            if todo['completed']:
+                done_tasks += 1
+                done_tasks_str += "\t {}\n".format(todo.get('title'))
+        print(
+            "Employee {} is done with tasks({}/{}):"
+            .format(user.get('name'), done_tasks, len(todos)))
+
+        print(done_tasks_str[:-1])
+
+    else:
         print("Usage: ./0-gather_data_from_an_API.py <employee_id>")
-        exit()
-
-    task_completed = 0
-    title_list = []
-
-
-    with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
-                                f'/users/{sys.argv[1]}') as req:
-        response = req.read()
-        str_response = response.decode('utf-8')
-        list_response = json.loads(str_response)
-        user = list_response.get("name")
-
-    with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
-                                f'/todos?userId={sys.argv[1]}') as req:
-        response = req.read()
-        str_response = response.decode('utf-8')
-        list_response = json.loads(str_response)
-        for dct in list_response:
-            if dct['completed'] is True:
-                task_completed = task_completed + 1
-                title_list.append(dct.get('title'))
-        print(f'Employee {user} is done with tasks' +
-              f' ({task_completed}/{len(list_response)}):')
-        for title in title_list:
-            print(f'\t {title}')

@@ -1,43 +1,33 @@
 #!/usr/bin/python3
 """
-script that returns employee ID and TO/DO list progress
+Module for interacting with a RESTful API for
+returning an employees TODO list progress
 """
 
-from sys import argv
 import json
-import urllib.request
+import requests
+import sys
 
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        url = "https://jsonplaceholder.typicode.com"
 
-def parse_response(response):
-    """converts response from byte to list type """
-    str_response = response.decode('utf-8')
-    list_response = json.loads(str_response)
-    return (list_response)
+        employee_id = int(sys.argv[1])
 
+        user = requests.get(
+            "{}/users/{}".format(url, employee_id)).json()
+        todos = requests.get(
+            "{}/users/{}/todos/".format(url, employee_id)).json()
 
-if __name__ == '__main__':
-    if len(argv) <= 1:
-        print("Usage: ./0-gather_data_from_an_API.py <employee_id>")
-        exit()
+        username = user.get('username')
+        rows = {"{}".format(employee_id): []}
+        for todo in todos:
+            rows['{}'.format(employee_id)].append({'username': username,
+                                                   'completed':
+                                                   todo.get('completed'),
+                                                   'task': todo.get('title')})
 
-    jsondict = {}
-
-    with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
-                                f'/users/{argv[1]}') as req:
-        list_response = parse_response(req.read())
-        user = list_response.get("name")
-
-    with urllib.request.urlopen('https://jsonplaceholder.typicode.com' +
-                                f'/todos?userId={argv[1]}') as req:
-        list_response = parse_response(req.read())
-        new_list = []
-        for dct in list_response:
-            new_dict = {}
-            new_dict = {"task": dct.get('title'), 
-                        "completed": dct.get('completed'),
-                        "username": user}
-            new_list.append(new_dict)
-        jsondict[f'{argv[1]}'] = new_list
-
-    with open(f'{argv[1]}.json', 'w', encoding='utf-8') as f:
-        f.write(json.dumps(jsondict))
+        with open("{}.json".format(employee_id), 'w') as f:
+            json.dump(rows, f)
+    else:
+        print("Usage: ./2-export_to_JSON.py <employee_id>")

@@ -1,20 +1,19 @@
 #!/usr/bin/python3
-"""script that write to a csv file employee ID and TO/DO list progress """
+"""script that write to a csv file employee ID and TO/DO list progress"""
+
 import csv
 from sys import argv
 import json
 import urllib.request
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     if len(argv) <= 1:
         print("Usage: ./1-export_to_csv.py <employee_id>")
         exit()
 
-    csv_headers = ['USER_ID', 'USERNAME',
-                   'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-
     def parse_response(response):
-        """converts response from byte to list type """ 
+        """converts response from byte to list type""" 
         str_response = response.decode('utf-8')
         list_response = json.loads(str_response)
         return (list_response)

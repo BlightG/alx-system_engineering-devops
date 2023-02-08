@@ -6,6 +6,7 @@ import urllib.request
 
 if __name__ == '__main__':
     if len(argv) <= 1:
+        print("Usage: ./0-gather_data_from_an_API.py <employee_id>")
         exit()
 
     task_completed = 0

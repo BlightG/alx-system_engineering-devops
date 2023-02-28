@@ -1,19 +1,13 @@
 #!/usr/bin/python3
-'''a module housing a function that interacts with the reddit api'''
+'''Function to return the number of subscribers to a subreddit
+using the Redit API'''
 
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """
-       a function the returns the number of subscribers of a subreddit
-       args:
-           subreddit - name of a subreddit
-       Return:
-           returns number of subscribers to the subreddit or
-           0 if an invalid subreddit is passed.
-    """
+    '''Funciton to get the number of subscirbers'''
     if subreddit is None:
         return 0
 

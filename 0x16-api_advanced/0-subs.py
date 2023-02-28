@@ -17,11 +17,12 @@ def number_of_subscribers(subreddit):
     if subreddit is None:
         return 0
 
-    with requests.get(f'https://www.reddit.com/r/{subreddit}/about.json',
-                      headers={'User-Agent':
+    headers = {'User-Agent':
                                'Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
                                 AppleWebKit/537.36 (KHTML, like Gecko)\
-                                Chrome/102.0.0.0 Safari/537.36'}) as res:
+                                Chrome/102.0.0.0 Safari/537.36'}
+    with requests.get(f'https://www.reddit.com/r/{subreddit}/about.json',
+                      headers=headers, allow_redirects=False) as res:
         if res.status_code == 200:
             res_json = res.json()
             if 'subscribers' in res_json['data'].keys():

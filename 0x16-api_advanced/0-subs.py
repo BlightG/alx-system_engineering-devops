@@ -7,12 +7,12 @@ import requests
 
 def number_of_subscribers(subreddit):
     """
-    a function the returns the number of subscribers of a subreddit
-    args:
-        subreddit - name of a subreddit
-    Return:
-        returns number of subscribers to the subreddit or
-        0 if an invalid subreddit is passed.
+       a function the returns the number of subscribers of a subreddit
+       args:
+           subreddit - name of a subreddit
+       Return:
+           returns number of subscribers to the subreddit or
+           0 if an invalid subreddit is passed.
     """
     if subreddit is None:
         return 0

@@ -1,19 +1,18 @@
 #!/usr/bin/python3
-"""
-a module housing a function that interacts with the reddit api
-"""
+'''a module housing a function that interacts with the reddit api
+'''
 import requests
 
 
 def top_ten(subreddit):
-    """
+    '''
     a function the returns the top 10 popular posts for a given subreddit
     args:
         subreddit - name of a subreddit
     Return:
         returns popular posts of the subreddit or
         None if an invalid subreddit is passed.
-    """
+    '''
     if subreddit is None:
         return None
 
